@@ -3,49 +3,47 @@
 #include "gtest/gtest.h"
 
 
-TEST(mock_test,ImageBufferManager){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,ImageBufferManager){
+
     ASSERT_EQ(manager->GetCount(),0);
-    delete manager;
+
 }
 
-TEST(mock_test,getImage_exception){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,getImage_exception){
+
     try {
         manager->GetImage(65);
         FAIL();
     } catch (const char* exception) {
         ASSERT_EQ(std::string(exception),"OUT_OF_RANGE");
     }
-    delete manager;
+
 }
 
 
-TEST(mock_test,getImage_normal){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,getImage_normal){
     ASSERT_EQ(manager->GetCount(),0);
     QImage image = manager->GetImage(5);
     ASSERT_EQ(manager->GetCount(),1);
-    delete manager;
 }
 
-TEST(mock_test,getCapacity){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,getCapacity){
+
     ASSERT_EQ(manager->GetCapacity(),64);
-    delete manager;
+
 }
 
-TEST(mock_test,setImageInfo){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,setImageInfo){
+
     ASSERT_EQ(manager->GetCount(),0);
     ImageInformation imageInfo;
     manager->SetImageInfo(0,imageInfo);
     ASSERT_EQ(manager->GetCount(),1);
-    delete manager;
+
 }
 
-TEST(mock_test,setImageInfoOutOfCapacity){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,setImageInfoOutOfCapacity){
+
     ASSERT_EQ(manager->GetCount(),0);
     ImageInformation imageInfo;
     int i=0;
@@ -58,11 +56,11 @@ TEST(mock_test,setImageInfoOutOfCapacity){
     }catch (const char* e) {
          ASSERT_EQ(std::string(e),"OUT_OF_RANGE");
     }
-    delete manager;
+
 }
 
-TEST(mock_test,removeImage){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,removeImage){
+
     ASSERT_EQ(manager->GetCount(),0);
     ImageInformation imageInfo;
     manager->SetImageInfo(0,imageInfo);
@@ -71,22 +69,22 @@ TEST(mock_test,removeImage){
     ASSERT_FALSE(manager->RemoveImage(1));
     ASSERT_FALSE(manager->RemoveImage(1));
     ASSERT_EQ(0,manager->GetCount());
-    delete manager;
+
 }
 
 
 
-TEST(mock_test,removeAll){
-    ImageBufferManager* manager = ImageBufferManager::Instance();
+TEST_F(imagebuffermanager_test,removeAll){
+
     ASSERT_EQ(manager->GetCount(),0);
     ImageInformation imageInfo;
     manager->SetImageInfo(0,imageInfo);
     ASSERT_TRUE(manager->RemoveAll());
     ASSERT_EQ(manager->GetCount(),0);
-    delete manager;
+
 }
 
-TEST(mock_test,addImageOverlay){
+TEST_F(imagebuffermanager_test,addImageOverlay){
     /*
     ImageBufferManager* manager = ImageBufferManager::Instance();
     ASSERT_EQ(manager->GetCount(),0);
