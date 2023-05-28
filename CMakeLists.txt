@@ -33,6 +33,7 @@ target_link_libraries(AI_Core  Qt6::Core)
 target_link_libraries(AI_Core  Qt6::Widgets)
 
 add_executable(${PROJECT_NAME}
+    TestEnvironment.h
     imagebuffermanager_test.h
     imagebuffermanager_test.cpp
     main.cpp
