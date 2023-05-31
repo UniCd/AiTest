@@ -85,13 +85,13 @@ TEST_F(imagebuffermanager_test,removeAll){
 }
 
 TEST_F(imagebuffermanager_test,addImageOverlay){
-    /*
+
     ImageBufferManager* manager = ImageBufferManager::Instance();
     ASSERT_EQ(manager->GetCount(),0);
     OverLayInfoImpl overlayInfo;
-    ASSERT_FALSE(manager->AddImageOverlay(0,overlayInfo));
+    ASSERT_FALSE(manager->AddImageOverlay(0,&overlayInfo));
     ASSERT_EQ(manager->GetCount(),0);
-    */
+
 }
 
 
